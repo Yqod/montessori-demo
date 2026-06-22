@@ -1,26 +1,162 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* =========================================================================
+   Montessori Zentrum Magdeburg – Design Tokens (Tailwind v4 CSS-first theme)
+   Warm, editorial, hand-made. No generic SaaS look.
+   ========================================================================= */
+@theme {
+  /* --- Brand palette ----------------------------------------------------- */
+  --color-sand: #f7f1e7; /* main background, cream */
+  --color-sand-deep: #efe6d6; /* deeper cream for alternating bands */
+  --color-beige: #e3d3b8; /* warm beige */
+  --color-beige-soft: #ece0cb; /* in-between tone for soft edges */
+
+  --color-sage: #a7b89a; /* sage green */
+  --color-sage-dark: #8aa17e; /* darker sage accent */
+  --color-sage-deep: #6e8765; /* deepest sage for contrast on light */
+
+  --color-clay: #c98a6b; /* terracotta / clay – warm contrast accent */
+
+  --color-forest: #3a4438; /* deep forest – primary text */
+  --color-forest-soft: #5b6657; /* muted forest – secondary text */
+
+  --color-cream: #fffdf8; /* off-white for cards */
+
+  /* explicit hover/active shades */
+  --color-clay-700: #b07053;
+  --color-forest-900: #2b332a;
+
+  /* --- Typography -------------------------------------------------------- */
+  --font-display: var(--font-display), "Georgia", serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+
+  /* --- Warm, soft shadows (never the generic cool drop-shadow) ----------- */
+  --shadow-warm-sm: 0 2px 8px -3px rgba(58, 68, 56, 0.12);
+  --shadow-warm: 0 18px 40px -24px rgba(95, 74, 48, 0.35);
+  --shadow-warm-lg: 0 30px 70px -30px rgba(95, 74, 48, 0.4);
+  --shadow-lift: 0 22px 48px -20px rgba(58, 68, 56, 0.28);
+
+  /* --- Organic corner radii --------------------------------------------- */
+  --radius-blob: 42% 58% 63% 37% / 41% 44% 56% 59%;
+
+  /* --- Custom timing & animations --------------------------------------- */
+  --animate-drift: drift 16s ease-in-out infinite;
+  --animate-drift-slow: drift 24s ease-in-out infinite;
+  --animate-sway: sway 7s ease-in-out infinite;
+  --animate-marquee: marquee 38s linear infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Keyframes (top-level so they are always emitted) ------------------------ */
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate3d(18px, -22px, 0) rotate(6deg);
+  }
+  66% {
+    transform: translate3d(-14px, 12px, 0) rotate(-5deg);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* =========================================================================
+   Base layer
+   ========================================================================= */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-sand);
+    color: var(--color-forest);
+    font-family: var(--font-sans);
+    /* very subtle paper-like grain via layered radial tints */
+    background-image:
+      radial-gradient(
+        circle at 18% 22%,
+        rgba(199, 138, 107, 0.05) 0,
+        transparent 45%
+      ),
+      radial-gradient(
+        circle at 82% 8%,
+        rgba(138, 161, 126, 0.06) 0,
+        transparent 40%
+      );
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Headlines lean on the display serif by default */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+  }
+
+  ::selection {
+    background-color: var(--color-sage);
+    color: var(--color-forest-900);
+  }
+
+  /* Warm, branded focus ring for keyboard users */
+  :focus-visible {
+    outline: 2px solid var(--color-clay);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+/* =========================================================================
+   Small reusable utilities
+   ========================================================================= */
+@layer utilities {
+  /* Honor reduced-motion globally for our decorative animations */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-drift,
+    .animate-drift-slow,
+    .animate-sway,
+    .animate-marquee {
+      animation: none !important;
+    }
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  /* A soft, organic blob mask used by background shapes */
+  .blob {
+    border-radius: var(--radius-blob);
+  }
+
+  /* Hide scrollbars for horizontal scroll regions but keep functionality */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }
