@@ -65,6 +65,15 @@ const voices: Voice[] = [
     avatar: "bg-sage-dark",
     rotate: "lg:rotate-1",
   },
+  {
+    quote:
+      "Als Pädagogin schätze ich die Zeit, jedes Kind wirklich zu beobachten und genau dort zu begleiten, wo es gerade steht.",
+    name: "Frau Lindner",
+    role: "Team Freie Schule",
+    initials: "FL",
+    avatar: "bg-clay",
+    rotate: "lg:-rotate-1",
+  },
 ];
 
 export function TestimonialsSection() {

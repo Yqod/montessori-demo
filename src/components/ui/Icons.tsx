@@ -135,3 +135,63 @@ export const HeartIcon = (p: IconProps) => (
     />
   </Svg>
 );
+
+export const MailIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <rect x="3.5" y="5.5" width="17" height="13" rx="2.5" {...stroke} />
+    <path d="M4 7l8 6 8-6" {...stroke} />
+  </Svg>
+);
+
+export const UserIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <circle cx="12" cy="8.5" r="3.5" {...stroke} />
+    <path d="M5 19a7 7 0 0 1 14 0" {...stroke} />
+  </Svg>
+);
+
+export const CheckIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M5 12.5l4.5 4.5L19 7" {...stroke} />
+  </Svg>
+);
+
+export const PlusIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M12 5v14M5 12h14" {...stroke} />
+  </Svg>
+);
+
+export const TrashIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M5 7h14M10 7V5h4v2M7 7l1 12h8l1-12" {...stroke} />
+  </Svg>
+);
+
+export const NoteIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M5 5h14v10H9l-4 4V5Z" {...stroke} />
+    <path d="M8.5 9h7M8.5 12h4" {...stroke} />
+  </Svg>
+);
+
+export const ClockIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <circle cx="12" cy="12" r="8" {...stroke} />
+    <path d="M12 8v4.5l3 2" {...stroke} />
+  </Svg>
+);
+
+export const SlidersIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M5 8h9M17 8h2M5 16h2M10 16h9" {...stroke} />
+    <circle cx="15" cy="8" r="2" {...stroke} />
+    <circle cx="8" cy="16" r="2" {...stroke} />
+  </Svg>
+);
+
+export const ArrowLeft = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M20 12H5M11 6l-6 6 6 6" {...stroke} />
+  </Svg>
+);

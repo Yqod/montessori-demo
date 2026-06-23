@@ -25,9 +25,10 @@ const columns: { heading: string; links: { label: string; href: string }[] }[] =
     {
       heading: "Service",
       links: [
+        { label: "Interesse bekunden", href: "/interesse" },
         { label: "Termine", href: "/termine" },
         { label: "Downloads", href: "/downloads" },
-        { label: "Internum", href: "/internum" },
+        { label: "Internum", href: "/admin" },
         { label: "Stellenangebote", href: "/verein/stellenangebote" },
         { label: "Kontakte", href: "/kontakte" },
       ],
